@@ -128,9 +128,9 @@ private fun DrawerConteudo(
 
 fun getColorTexto(estaSelecionada: Boolean): Color {
     return if (estaSelecionada){
-        Color.Black
-    } else {
         Color.DarkGray
+    } else {
+        Color.Black
     }
 }
 

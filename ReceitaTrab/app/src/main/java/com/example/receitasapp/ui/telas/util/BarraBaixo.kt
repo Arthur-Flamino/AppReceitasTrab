@@ -20,44 +20,66 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.PathNode
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.receitasapp.ReceitaRotas
 import com.example.receitasapp.ui.telas.minhaContaTela.MinhaContaRota
+import kotlin.contracts.Returns
 
 @Composable
 fun BarraBotao(navController: NavController) {
+
+    val coroutineScope = rememberCoroutineScope()
+
+    val currentBack by navController.currentBackStackEntryAsState()
+    val rotaAtual = currentBack?.destination?.route?: MinhaContaRota.TELA_FAVORITO_ROTA
+
+    val ehRotaFavorito = rotaAtual == MinhaContaRota.TELA_FAVORITO_ROTA
+    val ehRotaFeito = rotaAtual == MinhaContaRota.TELA_FEITO_ROTA
+
     NavigationBar(containerColor = Color(0xFFE33EDB)){
         NavigationBarItem(
-            selected = true,
+            selected = ehRotaFavorito,
             onClick = {
                 navController.navigate(MinhaContaRota.TELA_FAVORITO_ROTA) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Star,
                     contentDescription = "Favorito",
-                    tint = Color.White,
+                    tint = GetColorMenu(ehRotaFavorito),
                     modifier = Modifier.size(40.dp)
                 )},
             label = { Text(text = "Favoritos") }
             )
 
         NavigationBarItem(
-            selected = false,
+            selected = ehRotaFeito,
             onClick = {
                 navController.navigate(MinhaContaRota.TELA_FEITO_ROTA) },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = "Feito",
-                    tint = Color.White,
+                    tint = GetColorMenu(ehRotaFeito),
                     modifier = Modifier.size(40.dp)
                 )},
             label = { Text(text = "Feitos") }
         )
+    }
+}
+
+fun GetColorMenu(ehRotaFavorito: Boolean): Color {
+    return if (ehRotaFavorito){
+        Color.Black
+    }else{
+        Color.White
     }
 }
 
