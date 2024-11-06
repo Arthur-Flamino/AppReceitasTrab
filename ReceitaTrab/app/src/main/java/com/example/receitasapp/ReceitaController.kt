@@ -119,7 +119,7 @@ private fun DrawerConteudo(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = "Rota 2",
                 modifier = Modifier.size(40.dp),
-                tint = getColorTexto(ehRota1)
+                tint = getColorTexto(ehRota2)
             )
             Text(text = "Conta", fontSize = 30.sp, color = getColorTexto(ehRota2))
         }
