@@ -88,7 +88,7 @@ private fun DrawerConteudo(
     Column(
         modifier = Modifier
             .width(300.dp)
-            .background(Color(0xFFBE1FB7))
+            .background(Color(0xFFF05D2F))
             .padding(31.dp)
             .fillMaxHeight()
     ) {

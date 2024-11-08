@@ -30,7 +30,7 @@ fun BarraBotao(navController: NavController) {
     val ehRotaFavorito = rotaAtual == MinhaContaRota.TELA_FAVORITO_ROTA
     val ehRotaFeito = rotaAtual == MinhaContaRota.TELA_FEITO_ROTA
 
-    NavigationBar(containerColor = Color(0xFFE33EDB)){
+    NavigationBar(containerColor = Color(0xFFEC430E)){
         NavigationBarItem(
             selected = ehRotaFavorito,
             onClick = {
