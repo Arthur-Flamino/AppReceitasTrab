@@ -10,10 +10,10 @@ class ReceitaDataBase {
     @Database(entities = [Receita::class], version = 1)
     abstract class ReceitaDatabase : RoomDatabase() {
 
-        abstract fun ReceitaDao(): ReceitaDao
+        abstract fun receitaDao(): ReceitaDao
 
         companion object{
-            fun AbrirBancoDados(context: Context): ReceitaDatabase {
+            fun abrirBancoDados(context: Context): ReceitaDatabase {
                 return Room.databaseBuilder(
                     context.applicationContext,
                     ReceitaDatabase::class.java, "Receita.db"

@@ -13,11 +13,11 @@ interface ReceitaDao {
 
     //Listar Favorito
     @Query("select * from receita where ehFavorito = true")
-    fun ListaReceitaFavorita(): Flow<List<Receita>>
+    fun listaReceitaFavorita(): Flow<List<Receita>>
 
     //Listar Feito
     @Query("select * from receita where ehFeito = true")
-    fun ListaReceitaFeita(): Flow<List<Receita>>
+    fun listaReceitaFeita(): Flow<List<Receita>>
 
 
 }
