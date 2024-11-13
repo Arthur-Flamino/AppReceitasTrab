@@ -6,5 +6,7 @@ interface IRepository {
     fun listarTodasReceita(): Flow<List<Receita>>
     fun listaReceitaFavorita(): Flow<List<Receita>>
     fun listaReceitaFeita(): Flow<List<Receita>>
+    suspend fun buscarReceitaId(idx: Int): Receita?
+    suspend fun gravarReceita(receita: Receita)
 
 }

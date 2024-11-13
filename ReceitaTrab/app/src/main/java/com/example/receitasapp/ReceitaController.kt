@@ -24,8 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -33,20 +31,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.receitasapp.ui.telas.inicioTela.TelaInicial
-import com.example.receitasapp.ui.telas.minhaContaTela.MinhaConta
+import com.example.receitasapp.ui.telas.inicioTela.TelaInicialNavHost
+import com.example.receitasapp.ui.telas.inicioTela.TelaPrincipal
+import com.example.receitasapp.ui.telas.minhaContaTela.MinhaContaNavHost
+import com.example.receitasapp.ui.telas.util.ReceitaViewModel
 import kotlinx.coroutines.launch
 
-object ReceitaRotas{
-    const val TELA_UM_ROTA = "tela1"
-    const val TELA_DOIS_ROTA = "tela2"
-}
 
-@Preview(
-    device = Devices.PIXEL
-)
 @Composable
-fun ReceitaController(){
+fun ReceitaController(viewModel: ReceitaViewModel){
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
@@ -58,13 +51,13 @@ fun ReceitaController(){
         content ={
             NavHost(
                 navController = navController,
-                startDestination = ReceitaRotas.TELA_UM_ROTA)
+                startDestination = "tela1")
             {
-                composable(ReceitaRotas.TELA_UM_ROTA) {
-                    TelaInicial(drawerState)
+                composable("tela1") {
+                    TelaInicialNavHost(viewModel, drawerState)
                 }
-                composable(ReceitaRotas.TELA_DOIS_ROTA) {
-                    MinhaConta(drawerState)
+                composable("tela2") {
+                    MinhaContaNavHost(drawerState)
                 }
             }
         }
@@ -80,10 +73,10 @@ private fun DrawerConteudo(
     val coroutineScope = rememberCoroutineScope()
 
     val currentBack by navController.currentBackStackEntryAsState()
-    val rotaAtual = currentBack?.destination?.route?: ReceitaRotas.TELA_UM_ROTA
+    val rotaAtual = currentBack?.destination?.route?: "tela1"
 
-    val ehRota1 = rotaAtual == ReceitaRotas.TELA_UM_ROTA
-    val ehRota2 = rotaAtual == ReceitaRotas.TELA_DOIS_ROTA
+    val ehRota1 = rotaAtual == "tela1"
+    val ehRota2 = rotaAtual == "tela2"
 
     Column(
         modifier = Modifier
@@ -96,7 +89,7 @@ private fun DrawerConteudo(
         TextButton(
             colors = ButtonDefaults.buttonColors(containerColor = getColorMenu(ehRota1)),
             onClick ={
-                navController.navigate(ReceitaRotas.TELA_UM_ROTA)
+                navController.navigate("tela1")
                 coroutineScope.launch { drawerState.close() }
             }
         ) {
@@ -106,12 +99,12 @@ private fun DrawerConteudo(
                 modifier = Modifier.size(40.dp),
                 tint = getColorTexto(ehRota1)
             )
-            Text(text = "Inicial", fontSize = 30.sp, color = getColorTexto(ehRota1))
+            Text(text = "Inicio", fontSize = 30.sp, color = getColorTexto(ehRota1))
         }
         TextButton(
             colors = ButtonDefaults.buttonColors(containerColor = getColorMenu(ehRota2)),
             onClick ={
-                navController.navigate(ReceitaRotas.TELA_DOIS_ROTA)
+                navController.navigate("tela2")
                 coroutineScope.launch { drawerState.close() }
             }
         ) {

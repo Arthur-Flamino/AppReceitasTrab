@@ -15,5 +15,6 @@ data class Receita(
     val ehFavorito: Boolean = false,
     val ehFeito: Boolean = false
 ) {
+
     constructor(): this(null, "", "", "", "", false, false)
 }

@@ -1,13 +1,20 @@
 package com.example.receitasapp.ui.telas.util
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.privacysandbox.ads.adservices.adid.AdId
 import com.example.receitasapp.dados.IRepository
 import com.example.receitasapp.dados.Receita
+import com.example.receitasapp.dados.ReceitaDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ReceitaViewModel(
     private val repository: IRepository
@@ -55,14 +62,25 @@ class ReceitaViewModel(
         }
     }
 
-    // Métodos para ativar/desativar a visualização das listas feitas e favoritas
-    fun toggleMostrarFeitas() {
-        _mostrarFeitas.value = !_mostrarFeitas.value
+    var receita: MutableState<Receita?> = mutableStateOf(null)
+        private set
+
+    suspend fun buscarReceitaId(id: Int) {
+        viewModelScope.launch {
+            receita.value = repository.buscarReceitaId(id)
+        }
     }
 
-    fun toggleMostrarFavoritas() {
-        _mostrarFavoritas.value = !_mostrarFavoritas.value
+
+
+    fun gravarReceita(receita: Receita) {
+        viewModelScope.launch {
+            repository.gravarReceita(receita)
+        }
     }
+
+
+
 }
 
 
