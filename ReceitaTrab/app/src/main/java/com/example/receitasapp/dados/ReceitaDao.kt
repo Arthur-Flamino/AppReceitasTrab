@@ -1,9 +1,8 @@
 package com.example.receitasapp.dados
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -11,7 +10,7 @@ interface ReceitaDao {
 
     //Listar
     @Query("select * from receita")
-    fun listaTodasReceita(): List<Receita>
+    fun listaTodasReceita(): Flow<List<Receita>>
 
     //Listar Favorito
     @Query("select * from receita where ehFavorito = true")
@@ -21,11 +20,12 @@ interface ReceitaDao {
     @Query("select * from receita where ehFeito = true")
     fun listaReceitaFeita(): Flow<List<Receita>>
 
-
+    //Buscar por id
     @Query("select * from receita where id = :idx")
     fun buscarReceitaId(idx: Int):  Receita
 
-    @Upsert
+    //adicionar receita
+    @Insert
     fun gravarReceita(receita: Receita)
 
 

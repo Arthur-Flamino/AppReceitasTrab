@@ -72,7 +72,6 @@ class ReceitaViewModel(
     }
 
 
-
     fun gravarReceita(receita: Receita) {
         viewModelScope.launch {
             repository.gravarReceita(receita)
