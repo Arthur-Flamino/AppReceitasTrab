@@ -57,7 +57,7 @@ fun ReceitaController(viewModel: ReceitaViewModel){
                     TelaInicialNavHost(viewModel, drawerState)
                 }
                 composable("tela2") {
-                    MinhaContaNavHost(drawerState)
+                    MinhaContaNavHost(viewModel, drawerState)
                 }
             }
         }
@@ -96,7 +96,7 @@ private fun DrawerConteudo(
             Icon(
                 imageVector = Icons.Default.Home,
                 contentDescription = "Rota 1",
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(35.dp),
                 tint = getColorTexto(ehRota1)
             )
             Text(text = "Inicio", fontSize = 30.sp, color = getColorTexto(ehRota1))
@@ -111,7 +111,7 @@ private fun DrawerConteudo(
             Icon(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = "Rota 2",
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(35.dp),
                 tint = getColorTexto(ehRota2)
             )
             Text(text = "Conta", fontSize = 30.sp, color = getColorTexto(ehRota2))

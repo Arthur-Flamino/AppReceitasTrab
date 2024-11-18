@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,9 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.room.util.TableInfo
+import com.example.receitasapp.dados.Receita
 import com.example.receitasapp.ui.telas.util.ReceitaViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 @Composable
 fun TelaAdicionar(vModel: ReceitaViewModel, navController: NavController){
@@ -43,20 +42,36 @@ fun TelaAdicionar(vModel: ReceitaViewModel, navController: NavController){
     )
     ) {
         Text(text = "Nova Receita",
-            fontSize = 30.sp,
+            fontSize = 28.sp,
             fontWeight = FontWeight.ExtraBold
             )
         Spacer(modifier = Modifier.height(12.dp))
-        OutlinedTextField(value = titulo, onValueChange =)
+        OutlinedTextField(value = titulo, onValueChange = {titulo = it})
         Spacer(modifier = Modifier.height(12.dp))
-        OutlinedTextField(value = descricao, onValueChange =)
+        OutlinedTextField(value = descricao, onValueChange ={descricao = it})
         Spacer(modifier = Modifier.height(12.dp))
-        OutlinedTextField(value = ingredientes, onValueChange =)
+        OutlinedTextField(value = ingredientes, onValueChange ={ingredientes = it})
         Spacer(modifier = Modifier.height(12.dp))
-        OutlinedTextField(value = preparo, onValueChange =)
+        OutlinedTextField(value = preparo, onValueChange ={preparo = it})
         Spacer(modifier = Modifier.height(17.dp))
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            coroutineScope.launch {
+                val receitaNova = Receita(
+                    titulo = titulo,
+                    descricao = descricao,
+                    ingredientes = ingredientes,
+                    preparo = preparo
+                )
+                vModel.gravarReceita(receitaNova)
+                navController.popBackStack()
+            }
+        }){
+            Text(text = "Salvar Receita",
+                fontSize = 28.sp)
+        } 
+
             
-        }
+            
+
     }
 }

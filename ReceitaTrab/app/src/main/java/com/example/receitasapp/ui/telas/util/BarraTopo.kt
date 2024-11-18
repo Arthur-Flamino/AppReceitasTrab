@@ -38,7 +38,7 @@ fun BarraTop(drawerState: DrawerState){
                     imageVector = Icons.Default.Menu,
                     contentDescription = "=",
                     tint = Color.White,
-                    modifier = Modifier.size(40.dp))
+                    modifier = Modifier.size(35.dp))
             }
         },
         title = {

@@ -1,4 +1,4 @@
-package com.example.receitasapp.ui.telas.inicioTela
+package com.example.receitasapp.ui.telas.minhaContaTela
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
