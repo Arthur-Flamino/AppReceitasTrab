@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun ReceitaController(viewModel: ReceitaViewModel){
+fun ReceitaController(viewModel: ReceitaViewModel) {
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
@@ -48,10 +48,11 @@ fun ReceitaController(viewModel: ReceitaViewModel){
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = { DrawerConteudo(navController, drawerState) },
-        content ={
+        content = {
             NavHost(
                 navController = navController,
-                startDestination = "tela1")
+                startDestination = "tela1"
+            )
             {
                 composable("tela1") {
                     TelaInicialNavHost(viewModel, drawerState)
@@ -69,11 +70,11 @@ fun ReceitaController(viewModel: ReceitaViewModel){
 private fun DrawerConteudo(
     navController: NavController,
     drawerState: DrawerState
-){
+) {
     val coroutineScope = rememberCoroutineScope()
 
     val currentBack by navController.currentBackStackEntryAsState()
-    val rotaAtual = currentBack?.destination?.route?: "tela1"
+    val rotaAtual = currentBack?.destination?.route ?: "tela1"
 
     val ehRota1 = rotaAtual == "tela1"
     val ehRota2 = rotaAtual == "tela2"
@@ -88,7 +89,7 @@ private fun DrawerConteudo(
         Spacer(modifier = Modifier.height(70.dp))
         TextButton(
             colors = ButtonDefaults.buttonColors(containerColor = getColorMenu(ehRota1)),
-            onClick ={
+            onClick = {
                 navController.navigate("tela1")
                 coroutineScope.launch { drawerState.close() }
             }
@@ -103,7 +104,7 @@ private fun DrawerConteudo(
         }
         TextButton(
             colors = ButtonDefaults.buttonColors(containerColor = getColorMenu(ehRota2)),
-            onClick ={
+            onClick = {
                 navController.navigate("tela2")
                 coroutineScope.launch { drawerState.close() }
             }
@@ -120,7 +121,7 @@ private fun DrawerConteudo(
 }
 
 fun getColorTexto(estaSelecionada: Boolean): Color {
-    return if (estaSelecionada){
+    return if (estaSelecionada) {
         Color.DarkGray
     } else {
         Color.Black
@@ -128,7 +129,7 @@ fun getColorTexto(estaSelecionada: Boolean): Color {
 }
 
 fun getColorMenu(estaSelecionada: Boolean): Color {
-    return if (estaSelecionada){
+    return if (estaSelecionada) {
         Color.White
     } else {
         Color.Transparent

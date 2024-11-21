@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BarraTop(drawerState: DrawerState){
+fun BarraTop(drawerState: DrawerState) {
     val coroutineScope = rememberCoroutineScope()
 
     TopAppBar(
@@ -38,17 +38,19 @@ fun BarraTop(drawerState: DrawerState){
                     imageVector = Icons.Default.Menu,
                     contentDescription = "=",
                     tint = Color.White,
-                    modifier = Modifier.size(35.dp))
+                    modifier = Modifier.size(35.dp)
+                )
             }
         },
         title = {
             Box(
                 modifier = Modifier.fillMaxWidth()
-            ){
-            Text(text = "Receitas", fontSize = 37.sp,
-                color = Color.White,
-                fontWeight = FontWeight(400)
-            )
+            ) {
+                Text(
+                    text = "Receitas", fontSize = 37.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight(400)
+                )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(TopCor)

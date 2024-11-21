@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -24,23 +25,32 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.example.receitasapp.ui.telas.util.BarraTop
 import com.example.receitasapp.ui.telas.util.ReceitaViewModel
 
 
 @Composable
-fun TelaPrincipal(vModel: ReceitaViewModel,navController: NavController, drawerState: DrawerState){
+fun TelaPrincipal(
+    vModel: ReceitaViewModel,
+    navController: NavController,
+    drawerState: DrawerState
+) {
 
     Scaffold(
         topBar = { BarraTop(drawerState) },
         content = { iPad -> TextoPrincipal(vModel, navController, iPad) },
-
+        bottomBar = { Adicionar(navController) }
     )
 }
 
 
 @Composable
-private fun TextoPrincipal(vModel: ReceitaViewModel,navController: NavController, iPad: PaddingValues) {
+private fun TextoPrincipal(
+    vModel: ReceitaViewModel,
+    navController: NavController,
+    iPad: PaddingValues
+) {
 
 
     val receitas by vModel.todasReceitas.collectAsState()
@@ -63,6 +73,17 @@ private fun TextoPrincipal(vModel: ReceitaViewModel,navController: NavController
                     }
                     .fillMaxWidth()
             ) {
+
+                if (receita.imagemUrl != null) {
+                    AsyncImage(
+                        model = receita.imagemUrl,
+                        contentDescription = "Imagem da receita ${receita.titulo}",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                    )
+                }
+
                 Text(
                     text = receita.titulo,
                     fontSize = 26.sp,
@@ -70,22 +91,23 @@ private fun TextoPrincipal(vModel: ReceitaViewModel,navController: NavController
                 )
             }
         }
+    }
+}
 
-
-        IconButton(
-            onClick = {
-                navController.navigate("TelaAdicionar")
-            },
-            modifier = Modifier
-                .align(Alignment.End)
-                .padding(16.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "Adicionar Receita",
-                tint = Color.Green
-            )
-        }
+@Composable
+private fun Adicionar(navController: NavController) {
+    IconButton(
+        onClick = {
+            navController.navigate("TelaAdicionar")
+        },
+        modifier = Modifier.Companion
+            .padding(22.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Add,
+            contentDescription = "Adicionar Receita",
+            tint = Color.Green
+        )
     }
 }
 

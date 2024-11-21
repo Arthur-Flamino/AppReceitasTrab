@@ -24,7 +24,11 @@ import com.example.receitasapp.ui.telas.util.BarraTop
 import com.example.receitasapp.ui.telas.util.ReceitaViewModel
 
 @Composable
-fun TelaFavorito(viewModel: ReceitaViewModel, drawerState: DrawerState, navController: NavController){
+fun TelaFavorito(
+    viewModel: ReceitaViewModel,
+    drawerState: DrawerState,
+    navController: NavController
+) {
 
     Scaffold(
         topBar = { BarraTop(drawerState) },
@@ -34,7 +38,11 @@ fun TelaFavorito(viewModel: ReceitaViewModel, drawerState: DrawerState, navContr
 }
 
 @Composable
-private fun TextoPrincipal(viewModel: ReceitaViewModel, iPad: PaddingValues, navController: NavController) {
+private fun TextoPrincipal(
+    viewModel: ReceitaViewModel,
+    iPad: PaddingValues,
+    navController: NavController
+) {
 
     val receitas by viewModel.todasReceitas.collectAsState()
 
@@ -42,9 +50,7 @@ private fun TextoPrincipal(viewModel: ReceitaViewModel, iPad: PaddingValues, nav
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(iPad),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
+            .padding(iPad)
     ) {
         val receitasFavoritas = receitas.filter { it.ehFavorito }
 

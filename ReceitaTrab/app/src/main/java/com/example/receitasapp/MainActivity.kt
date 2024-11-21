@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.receitasapp.dados.IRepository
 import com.example.receitasapp.dados.LocalRepositorio
 import com.example.receitasapp.dados.ReceitaDataBase.ReceitaDatabase.Companion.abrirBancoDados
+import com.example.receitasapp.dados.RemoteRepository
 import com.example.receitasapp.ui.telas.util.ReceitaViewModel
 
 class MainActivity : ComponentActivity() {
@@ -16,11 +16,12 @@ class MainActivity : ComponentActivity() {
 
         val db = abrirBancoDados(this)
         val local = LocalRepositorio(db.receitaDao())
-        val viewModel = ReceitaViewModel(local)
+        val remoto = RemoteRepository()
+        val viewModel = ReceitaViewModel(remoto)
 
         setContent {
             ReceitaController(viewModel)
-            }
         }
     }
+}
 

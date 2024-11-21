@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "736752064874",
+    "project_id": "receitaapptrab",
+    "storage_bucket": "receitaapptrab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736752064874:android:8362695d1b83450960ed13",
+        "android_client_info": {
+          "package_name": "com.example.receitasapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1kQhjpWzACxbVoqx_s_6Fzq3DXn7jIUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

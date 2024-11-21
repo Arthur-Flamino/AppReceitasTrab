@@ -1,4 +1,4 @@
-package com.example.receitasapp.ui.telas.inicioTela
+package com.example.receitasapp.ui.telas.minhaContaTela
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +37,7 @@ import com.example.receitasapp.ui.telas.util.ReceitaViewModel
 import com.example.receitasapp.ui.theme.TopCor
 
 @Composable
-fun TelaVerReceitaInicio(
+fun TelaVerReceitaConta(
     receitaId: Int? = null,
     viewModel: ReceitaViewModel,
     navController: NavController
@@ -112,7 +112,7 @@ private fun ExibirReceita(
             )
 
             Row(
-                modifier = Modifier.padding(top = 16.dp),
+                modifier = Modifier.padding(top = 20.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Icon(
@@ -151,7 +151,7 @@ private fun TopBar(navController: NavController) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Voltar",
-                    tint = Color.Black,
+                    tint = Color.White,
                     modifier = Modifier.size(35.dp)
                 )
 

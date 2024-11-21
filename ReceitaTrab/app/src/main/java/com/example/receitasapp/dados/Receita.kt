@@ -7,14 +7,17 @@ import androidx.room.PrimaryKey
 @Entity
 data class Receita(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    var id: Int? = null,
     val titulo: String,
     val descricao: String,
     val ingredientes: String,
     val preparo: String,
-    val ehFavorito: Boolean = false,
-    val ehFeito: Boolean = false
+    val imagemUrl: String? = null,
+    var ehFavorito: Boolean = false,
+    var ehFeito: Boolean = false
 ) {
 
-    constructor(): this(null, "", "", "", "", false, false)
+    constructor(): this(
+        null, "", "", "", "", null, false, false
+    )
 }

@@ -10,67 +10,74 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-//import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.receitasapp.ui.telas.minhaContaTela.MinhaContaRota
 
 @Composable
 fun BarraBotao(navController: NavController) {
 
-    //val coroutineScope = rememberCoroutineScope()
 
     val currentBack by navController.currentBackStackEntryAsState()
-    val rotaAtual = currentBack?.destination?.route?: MinhaContaRota.TELA_FAVORITO_ROTA
+    val rotaAtual = currentBack?.destination?.route ?: "TelaFavoritos"
 
-    val ehRotaFavorito = rotaAtual == MinhaContaRota.TELA_FAVORITO_ROTA
-    val ehRotaFeito = rotaAtual == MinhaContaRota.TELA_FEITO_ROTA
+    val ehRotaFavorito = rotaAtual == "TelaFavoritos"
+    val ehRotaFeito = rotaAtual == "TelaFeitos"
 
-    NavigationBar(containerColor = Color(0xFFEC430E)){
+    NavigationBar(containerColor = Color(0xFFEC430E)) {
         NavigationBarItem(
             selected = ehRotaFavorito,
             onClick = {
-                navController.navigate(MinhaContaRota.TELA_FAVORITO_ROTA) },
+                navController.navigate("TelaFavoritos")
+            },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Star,
                     contentDescription = "Favorito",
-                    tint = GetColorIcon(ehRotaFavorito),
+                    tint = getColorIcon(ehRotaFavorito),
                     modifier = Modifier.size(40.dp)
-                )},
-            label = { Text(text = "Favoritos", fontSize = 15.sp, color = getColorText(ehRotaFavorito)) }
-            )
+                )
+            },
+            label = {
+                Text(
+                    text = "Favoritos",
+                    fontSize = 15.sp,
+                    color = getColorText(ehRotaFavorito)
+                )
+            }
+        )
 
         NavigationBarItem(
             selected = ehRotaFeito,
             onClick = {
-                navController.navigate(MinhaContaRota.TELA_FEITO_ROTA) },
+                navController.navigate("TelaFeitos")
+            },
             icon = {
                 Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = "Feito",
-                    tint = GetColorIcon(ehRotaFeito),
+                    tint = getColorIcon(ehRotaFeito),
                     modifier = Modifier.size(40.dp)
-                )},
+                )
+            },
             label = { Text(text = "Feitos", fontSize = 15.sp, color = getColorText(ehRotaFeito)) }
         )
     }
 }
 
-fun GetColorIcon(estaSelect: Boolean): Color {
-    return if (estaSelect){
+fun getColorIcon(estaSelect: Boolean): Color {
+    return if (estaSelect) {
         Color.Black
-    }else{
+    } else {
         Color.White
     }
 }
 
 fun getColorText(estaSelect: Boolean): Color {
-    return if (estaSelect){
+    return if (estaSelect) {
         Color.Black
     } else {
         Color.White

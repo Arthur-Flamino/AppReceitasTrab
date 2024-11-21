@@ -10,14 +10,6 @@ class LocalRepositorio(
         return dao.listaTodasReceita()
     }
 
-    override fun listaReceitaFavorita(): Flow<List<Receita>>{
-        return dao.listaReceitaFavorita()
-    }
-
-    override fun listaReceitaFeita(): Flow<List<Receita>>{
-        return dao.listaReceitaFeita()
-    }
-
     override suspend fun buscarReceitaId(idx: Int): Receita?{
         return dao.buscarReceitaId(idx)
     }

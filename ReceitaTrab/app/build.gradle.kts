@@ -5,8 +5,8 @@ plugins {
     //Adicionar
     kotlin("plugin.serialization")
     id("com.google.devtools.ksp")
-    //id("com.google.dagger.hilt.android")
-    //id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
+    //id("com.android.application")
 }
 
 android {
@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room.common)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -83,7 +84,11 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.3.0")
+
     //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-analytics")
+
 }
